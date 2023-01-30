@@ -37,7 +37,7 @@ platform :android do
     current_build_number = previous_internal_build_number > previous_beta_build_number ? previous_internal_build_number : previous_beta_build_number
     current_build_number += 1
     gradle(
-    task: "assembleRelease --parallel --configure-on-demand",
+    task: "assembleMasterBasicRelease",
       properties: {
         "android.injected.version.code" => current_build_number,
         "android.injected.signing.store.file" => ENV["KEYSTORE"],
@@ -65,7 +65,7 @@ platform :android do
     current_build_number = previous_internal_build_number > previous_beta_build_number ? previous_internal_build_number : previous_beta_build_number
     current_build_number += 1
     gradle(
-    task: "assembleRelease --parallel --configure-on-demand",
+    task: "assembleMasterBasicRelease",
       properties: {
         "android.injected.version.code" => current_build_number,
         "android.injected.signing.store.file" => ENV["KEYSTORE"],
