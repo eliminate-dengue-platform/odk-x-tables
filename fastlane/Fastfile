@@ -36,10 +36,13 @@ platform :android do
     )[0]
     current_build_number = previous_internal_build_number > previous_beta_build_number ? previous_internal_build_number : previous_beta_build_number
     current_build_number += 1
+    inProgressVersionCode = ''
+    current_build_name = '2.1.10 rev ' + current_build_number.to_s + inProgressVersionCode
     gradle(
     task: "assembleMasterBasicRelease",
       properties: {
         "android.injected.version.code" => current_build_number,
+        "android.injected.version.name" => current_build_name,
         "android.injected.signing.store.file" => ENV["KEYSTORE"],
         "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
         "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
@@ -64,10 +67,13 @@ platform :android do
     )[0]
     current_build_number = previous_internal_build_number > previous_beta_build_number ? previous_internal_build_number : previous_beta_build_number
     current_build_number += 1
+    inProgressVersionCode = ''
+    current_build_name = '2.1.10 rev ' + current_build_number.to_s + inProgressVersionCode
     gradle(
     task: "assembleMasterBasicRelease",
       properties: {
         "android.injected.version.code" => current_build_number,
+        "android.injected.version.name" => current_build_name,
         "android.injected.signing.store.file" => ENV["KEYSTORE"],
         "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
         "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
