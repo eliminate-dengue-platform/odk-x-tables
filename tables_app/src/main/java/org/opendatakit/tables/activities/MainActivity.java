@@ -15,8 +15,10 @@
  */
 package org.opendatakit.tables.activities;
 
+import android.Manifest;
 import android.app.ActionBar;
 import android.app.Activity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentManager.BackStackEntry;
@@ -53,6 +55,7 @@ import org.opendatakit.utilities.ODKFileUtils;
 import org.opendatakit.views.ODKWebView;
 import org.opendatakit.views.OdkData;
 import org.opendatakit.webkitserver.utilities.UrlUtils;
+import org.opendatakit.utilities.RuntimePermissionUtils;
 
 import java.io.File;
 import java.util.Collections;
@@ -63,12 +66,17 @@ import java.util.Collections;
  * @author sudar.sam@gmail.com
  */
 public class MainActivity extends AbsBaseWebActivity
-    implements DatabaseConnectionListener, IInitResumeActivity {
+    implements DatabaseConnectionListener, IInitResumeActivity, ActivityCompat.OnRequestPermissionsResultCallback {
 
   public interface UXNotifyListener
   {
     public void notifyUIChanges();
   }
+
+  /**
+   * Request code for requesting camera permission
+   */
+  private static final int CAMERA_PERM_REQ_CODE = 100;
 
   // Used for logging
   private static final String TAG = MainActivity.class.getSimpleName();
@@ -180,6 +188,34 @@ public class MainActivity extends AbsBaseWebActivity
           activeScreenType.name());
     }
     mPropSingleton = CommonToolProperties.get( this ,mAppName);
+
+    requestCameraPermission();
+  }
+
+  private void requestCameraPermission() {
+    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+      ActivityCompat.requestPermissions(
+              this,
+              new String[] {
+                      Manifest.permission.CAMERA
+              },
+              CAMERA_PERM_REQ_CODE
+      );
+    }
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+    RuntimePermissionUtils.handleRequestPermissionsResult(
+        requestCode,
+        permissions,
+        grantResults,
+        this,
+        "ODK-X Tables needs access to your device\'s camera"
+    );
   }
 
   @Override
