@@ -417,6 +417,7 @@
     <string name="location_permission_rationale">ODK-X Tables necesita acceso a la ubicación de su dispositivo para poder mostrarlo en Map View</string>
     <string name="location_permission_perm_denied">Mi ubicación deshabilitada</string>
     <string name="location_unavailable">Ubicación no está disponible</string>
+    <string name="camera_permission_rationale">ODK-X Tables needs access to your device\'s camera</string>
     <string name="acc_value">0 m</string>
     <string name="distance">Distancia: %1$s</string>
     <string name="meters">Metros</string>

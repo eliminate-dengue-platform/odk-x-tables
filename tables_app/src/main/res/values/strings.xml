@@ -437,6 +437,8 @@
     <string name="location_permission_perm_denied">My Location feature disabled</string>
     <string name="location_unavailable">Location is unavailable</string>
 
+    <string name="camera_permission_rationale">ODK-X Tables needs access to your device\'s camera</string>
+
     <string name="acc_value">0 m</string>
     <string name="distance">Distance: %1$s</string>
     <string name="meters">Meters</string>

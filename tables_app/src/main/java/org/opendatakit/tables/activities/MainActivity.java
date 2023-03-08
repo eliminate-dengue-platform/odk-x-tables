@@ -56,6 +56,8 @@ import org.opendatakit.views.ODKWebView;
 import org.opendatakit.views.OdkData;
 import org.opendatakit.webkitserver.utilities.UrlUtils;
 import org.opendatakit.utilities.RuntimePermissionUtils;
+import androidx.annotation.NonNull;
+import android.content.pm.PackageManager;
 
 import java.io.File;
 import java.util.Collections;
@@ -214,7 +216,7 @@ public class MainActivity extends AbsBaseWebActivity
         permissions,
         grantResults,
         this,
-        "ODK-X Tables needs access to your device\'s camera"
+        R.string.camera_permission_rationale
     );
   }
 
