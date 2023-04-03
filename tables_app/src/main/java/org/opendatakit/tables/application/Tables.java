@@ -21,9 +21,6 @@ import org.opendatakit.application.CommonApplication;
 import org.opendatakit.tables.R;
 
 import java.lang.ref.WeakReference;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-
 
 /**
  * The application, holds a reference to itself and a very helpful getDatabase method
@@ -80,7 +77,7 @@ public class Tables extends CommonApplication {
         sslContext.init(null, null, null);
         HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
     } catch (Exception e) {
-        // ignore if android device doesn't support TLS version 1.2.
+        Log.e("Tables", "Error setting TLSv1.2", e);
     }
   }
 }
